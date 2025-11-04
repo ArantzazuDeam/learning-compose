@@ -1,5 +1,6 @@
 package com.example.mynewcompose.presentation.components.text
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +9,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AlternateEmail
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
@@ -45,7 +49,10 @@ fun MyTextFieldParentPreview() {
 @Composable
 fun MyTextFieldParent(modifier: Modifier) {
     var user by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var phone by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
+    var repeatPassword by rememberSaveable { mutableStateOf("") }
     var isPasswordHidden by rememberSaveable { mutableStateOf(true) }
 
     Column(
@@ -59,10 +66,18 @@ fun MyTextFieldParent(modifier: Modifier) {
     ) {
         MyLoginTitle()
         MyUserExample(user = user) { user = it }
+        MyEmailExample(email = email) { email = it }
+        MyPhoneExample(phone = phone) { phone = it }
         MyPasswordExample(
             password = password,
             isPasswordHidden = isPasswordHidden,
             onPasswordChange = { password = it },
+            onToggleButtonClicked = { isPasswordHidden = !isPasswordHidden },
+        )
+        MyRepeatPasswordExample(
+            password = repeatPassword,
+            isPasswordHidden = isPasswordHidden,
+            onPasswordChange = { repeatPassword = it },
             onToggleButtonClicked = { isPasswordHidden = !isPasswordHidden },
         )
     }
@@ -89,13 +104,61 @@ fun MyUserExample(
         singleLine = true,
         placeholder = { Text("Usuario") },
         label = { Text(text = "Introduce tu usuario") },
+        trailingIcon = {
+            Icon(
+                imageVector = Icons.Filled.Person,
+                contentDescription = "Usuario",
+            )
+        },
+    )
+}
+
+@Composable
+fun MyEmailExample(
+    email: String,
+    onUserChange: (String) -> Unit,
+) {
+    TextField(
+        value = email,
+        modifier = Modifier.fillMaxWidth(),
+        onValueChange = { onUserChange(it) },
+        singleLine = true,
+        label = { Text(text = "Introduce tu email") },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+        trailingIcon = {
+            Icon(
+                imageVector = Icons.Filled.AlternateEmail,
+                contentDescription = "Email",
+            )
+        },
+    )
+}
+
+@Composable
+fun MyPhoneExample(
+    phone: String,
+    onUserChange: (String) -> Unit,
+) {
+    TextField(
+        value = phone,
+        modifier = Modifier.fillMaxWidth(),
+        onValueChange = { onUserChange(it) },
+        singleLine = true,
+        label = { Text(text = "Introduce tu teléfono") },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+        trailingIcon = {
+            Icon(
+                imageVector = Icons.Filled.Phone,
+                contentDescription = "Phone",
+            )
+        },
     )
 }
 
 @Composable
 fun MyPasswordExample(
     password: String,
-    isPasswordHidden: Boolean,
+    isPasswordHidden: Boolean, // Este boolean podríamos definirlo dentro de la función, pero boeno
     onPasswordChange: (String) -> Unit,
     onToggleButtonClicked: () -> Unit,
 ) {
@@ -122,6 +185,37 @@ fun MyToggleButton(
         val description = if (isPasswordHidden) "Show password" else "Hide password"
         Icon(imageVector = visibilityIcon, contentDescription = description)
     }
+}
+
+@Composable
+fun MyRepeatPasswordExample(
+    password: String,
+    isPasswordHidden: Boolean, // Este boolean podríamos definirlo dentro de la función, pero boeno
+    onPasswordChange: (String) -> Unit,
+    onToggleButtonClicked: () -> Unit,
+) {
+    TextField(
+        value = password,
+        modifier = Modifier.fillMaxWidth(),
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        onValueChange = { onPasswordChange(it) },
+        placeholder = { Text("Contraseña") },
+        label = { Text(text = "Repite la contraseña") },
+        visualTransformation = getPassVisualTransformation(isPasswordHidden),
+        trailingIcon = { MyToggleText(isPasswordHidden) { onToggleButtonClicked() } },
+    )
+}
+
+@Composable
+fun MyToggleText(
+    isPasswordHidden: Boolean,
+    onToggleButtonClicked: () -> Unit,
+) {
+    Text(
+        text = if (isPasswordHidden) "Mostrar" else "Ocultar",
+        modifier = Modifier.clickable { onToggleButtonClicked() },
+    )
 }
 
 fun getPassVisualTransformation(isPasswordHidden: Boolean) =
