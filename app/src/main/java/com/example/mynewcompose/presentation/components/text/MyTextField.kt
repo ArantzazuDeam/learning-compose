@@ -1,21 +1,26 @@
 package com.example.mynewcompose.presentation.components.text
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AlternateEmail
+import androidx.compose.material.icons.filled.PermIdentity
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -26,6 +31,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -51,6 +57,8 @@ fun MyTextFieldParent(modifier: Modifier) {
     var user by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     var phone by rememberSaveable { mutableStateOf("") }
+    var nif by rememberSaveable { mutableStateOf("") }
+    var cardNumber by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var repeatPassword by rememberSaveable { mutableStateOf("") }
     var isPasswordHidden by rememberSaveable { mutableStateOf(true) }
@@ -68,6 +76,8 @@ fun MyTextFieldParent(modifier: Modifier) {
         MyUserExample(user = user) { user = it }
         MyEmailExample(email = email) { email = it }
         MyPhoneExample(phone = phone) { phone = it }
+        MyOutlinedNifTextField(nif = nif) { nif = it }
+        MyCreditCardComponent(cardNumber = cardNumber) { cardNumber = it }
         MyPasswordExample(
             password = password,
             isPasswordHidden = isPasswordHidden,
@@ -224,3 +234,54 @@ fun getPassVisualTransformation(isPasswordHidden: Boolean) =
     } else {
         VisualTransformation.None
     }
+
+@Composable
+fun MyOutlinedNifTextField(
+    nif: String,
+    onValueChange: (String) -> Unit,
+) {
+    OutlinedTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = nif,
+        onValueChange = { onValueChange(it) },
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+        label = { Text("Introduce tu DNI:") },
+        trailingIcon = { Icon(imageVector = Icons.Filled.PermIdentity, contentDescription = "NIF") },
+    )
+}
+
+@Composable
+fun MyCreditCardComponent(
+    cardNumber: String,
+    onValueChange: (String) -> Unit,
+) {
+    Spacer(modifier = Modifier.padding(6.dp))
+    MyCreditCardTitle()
+    MyBasicCreditCardTextField(cardNumber = cardNumber) { onValueChange(it) }
+    Spacer(modifier = Modifier.padding(6.dp))
+}
+
+@Composable
+fun MyCreditCardTitle() {
+    Text(text = "Introduce tu tarjeta de crédito:", modifier = Modifier.fillMaxWidth())
+}
+
+@Composable
+fun MyBasicCreditCardTextField(
+    cardNumber: String,
+    onValueChange: (String) -> Unit,
+) {
+    // Este tipo de componente es muy cómodo para personalizarlo cómo queramos.
+    BasicTextField(
+        value = cardNumber,
+        onValueChange = { onValueChange(it) },
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(Color.LightGray)
+                .padding(16.dp),
+    )
+}
