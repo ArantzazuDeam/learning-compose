@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.button.MyButtonParent
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
-import com.example.mynewcompose.presentation.components.text.MyTextFieldParent
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 
 class MainActivity : ComponentActivity() {
