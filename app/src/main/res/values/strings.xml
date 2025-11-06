@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">MyNewCompose</string>
+
+    <!-- Log in -->
+    <string name="log_in">Iniciar sesión</string>
+
+    <!-- Form titles -->
+    <string name="dni">DNI</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="phone">Teléfono</string>
+    <string name="user">Usuario</string>
+
+    <!-- Form labels -->
+    <string name="add_credit_card_into_text_field">Introduce tu tarjeta de crédito:</string>
+    <string name="add_dni_into_text_field">Introduce tu DNI</string>
+    <string name="add_email_into_text_field">Introduce tu email</string>
+    <string name="add_password_into_text_field">Introduce tu contraseña</string>
+    <string name="repeat_password_into_text_field">Repite la contraseña</string>
+    <string name="add_phone_into_text_field">Introduce tu teléfono</string>
+    <string name="add_user_into_text_field">Introduce tu usuario</string>
+
+    <!-- Form hints -->
+    <string name="hint_show">Mostrar</string>
+    <string name="hint_hide">Ocultar</string>
+    <string name="hint_show_password">Mostrar contraseña</string>
+    <string name="hint_hide_password">Ocultar contraseña</string>
+
 </resources>

@@ -32,13 +32,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mynewcompose.R
+import com.example.mynewcompose.utils.constant.STRING_EMPTY
+import com.example.mynewcompose.ui.theme.MyNewTheme.dimens as Dimens
 
 @Preview(showSystemUi = true)
 @Composable
@@ -54,23 +57,23 @@ fun MyTextFieldParentPreview() {
 
 @Composable
 fun MyTextFieldParent(modifier: Modifier) {
-    var user by rememberSaveable { mutableStateOf("") }
-    var email by rememberSaveable { mutableStateOf("") }
-    var phone by rememberSaveable { mutableStateOf("") }
-    var nif by rememberSaveable { mutableStateOf("") }
-    var cardNumber by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
-    var repeatPassword by rememberSaveable { mutableStateOf("") }
+    var user by rememberSaveable { mutableStateOf(STRING_EMPTY) }
+    var email by rememberSaveable { mutableStateOf(STRING_EMPTY) }
+    var phone by rememberSaveable { mutableStateOf(STRING_EMPTY) }
+    var nif by rememberSaveable { mutableStateOf(STRING_EMPTY) }
+    var cardNumber by rememberSaveable { mutableStateOf(STRING_EMPTY) }
+    var password by rememberSaveable { mutableStateOf(STRING_EMPTY) }
+    var repeatPassword by rememberSaveable { mutableStateOf(STRING_EMPTY) }
     var isPasswordHidden by rememberSaveable { mutableStateOf(true) }
 
     Column(
         modifier =
             modifier
                 .fillMaxSize()
-                .padding(32.dp)
-                .paddingFromBaseline(16.dp),
+                .padding(Dimens.columnPadding)
+                .paddingFromBaseline(Dimens.columnPaddingFromBaseline),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(Dimens.columnVerticalSpacing),
     ) {
         MyLoginTitle()
         MyUserExample(user = user) { user = it }
@@ -96,7 +99,7 @@ fun MyTextFieldParent(modifier: Modifier) {
 @Composable
 fun MyLoginTitle() {
     Text(
-        text = "Iniciar sesión",
+        text = stringResource(R.string.log_in),
         textAlign = TextAlign.Center,
         fontSize = 32.sp,
     )
@@ -112,12 +115,12 @@ fun MyUserExample(
         modifier = Modifier.fillMaxWidth(),
         onValueChange = { onUserChange(it) },
         singleLine = true,
-        placeholder = { Text("Usuario") },
-        label = { Text(text = "Introduce tu usuario") },
+        placeholder = { Text(stringResource(R.string.user)) },
+        label = { Text(text = stringResource(R.string.add_user_into_text_field)) },
         trailingIcon = {
             Icon(
                 imageVector = Icons.Filled.Person,
-                contentDescription = "Usuario",
+                contentDescription = stringResource(R.string.user),
             )
         },
     )
@@ -133,12 +136,12 @@ fun MyEmailExample(
         modifier = Modifier.fillMaxWidth(),
         onValueChange = { onUserChange(it) },
         singleLine = true,
-        label = { Text(text = "Introduce tu email") },
+        label = { Text(text = stringResource(R.string.add_email_into_text_field)) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         trailingIcon = {
             Icon(
                 imageVector = Icons.Filled.AlternateEmail,
-                contentDescription = "Email",
+                contentDescription = stringResource(R.string.email),
             )
         },
     )
@@ -154,12 +157,12 @@ fun MyPhoneExample(
         modifier = Modifier.fillMaxWidth(),
         onValueChange = { onUserChange(it) },
         singleLine = true,
-        label = { Text(text = "Introduce tu teléfono") },
+        label = { Text(text = stringResource(R.string.add_phone_into_text_field)) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
         trailingIcon = {
             Icon(
                 imageVector = Icons.Filled.Phone,
-                contentDescription = "Phone",
+                contentDescription = stringResource(R.string.phone),
             )
         },
     )
@@ -178,8 +181,8 @@ fun MyPasswordExample(
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         onValueChange = { onPasswordChange(it) },
-        placeholder = { Text("Contraseña") },
-        label = { Text(text = "Introduce tu contraseña") },
+        placeholder = { Text(stringResource(R.string.password)) },
+        label = { Text(text = stringResource(R.string.add_password_into_text_field)) },
         visualTransformation = getPassVisualTransformation(isPasswordHidden),
         trailingIcon = { MyToggleButton(isPasswordHidden) { onToggleButtonClicked() } },
     )
@@ -191,11 +194,22 @@ fun MyToggleButton(
     onToggleButtonClicked: () -> Unit,
 ) {
     IconButton(onClick = { onToggleButtonClicked() }) {
-        val visibilityIcon = if (isPasswordHidden) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
-        val description = if (isPasswordHidden) "Show password" else "Hide password"
-        Icon(imageVector = visibilityIcon, contentDescription = description)
+        Icon(
+            imageVector = getToggleButtonIcon(isPasswordHidden),
+            contentDescription = getToggleButtonDescription(isPasswordHidden),
+        )
     }
 }
+
+fun getToggleButtonIcon(isPasswordHidden: Boolean) = if (isPasswordHidden) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
+
+@Composable
+fun getToggleButtonDescription(isPasswordHidden: Boolean) =
+    if (isPasswordHidden) {
+        stringResource(R.string.hint_show_password)
+    } else {
+        stringResource(R.string.hint_hide_password)
+    }
 
 @Composable
 fun MyRepeatPasswordExample(
@@ -210,8 +224,8 @@ fun MyRepeatPasswordExample(
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         onValueChange = { onPasswordChange(it) },
-        placeholder = { Text("Contraseña") },
-        label = { Text(text = "Repite la contraseña") },
+        placeholder = { Text( stringResource(R.string.password)) },
+        label = { Text(text = stringResource(R.string.repeat_password_into_text_field)) },
         visualTransformation = getPassVisualTransformation(isPasswordHidden),
         trailingIcon = { MyToggleText(isPasswordHidden) { onToggleButtonClicked() } },
     )
@@ -223,7 +237,7 @@ fun MyToggleText(
     onToggleButtonClicked: () -> Unit,
 ) {
     Text(
-        text = if (isPasswordHidden) "Mostrar" else "Ocultar",
+        text = if (isPasswordHidden) stringResource(R.string.hint_show) else stringResource(R.string.hint_hide),
         modifier = Modifier.clickable { onToggleButtonClicked() },
     )
 }
@@ -246,8 +260,8 @@ fun MyOutlinedNifTextField(
         onValueChange = { onValueChange(it) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-        label = { Text("Introduce tu DNI:") },
-        trailingIcon = { Icon(imageVector = Icons.Filled.PermIdentity, contentDescription = "NIF") },
+        label = { Text(stringResource(R.string.add_dni_into_text_field)) },
+        trailingIcon = { Icon(imageVector = Icons.Filled.PermIdentity, contentDescription = stringResource(R.string.dni)) },
     )
 }
 
@@ -256,15 +270,15 @@ fun MyCreditCardComponent(
     cardNumber: String,
     onValueChange: (String) -> Unit,
 ) {
-    Spacer(modifier = Modifier.padding(6.dp))
+    Spacer(modifier = Modifier.padding(Dimens.spacerPadding))
     MyCreditCardTitle()
     MyBasicCreditCardTextField(cardNumber = cardNumber) { onValueChange(it) }
-    Spacer(modifier = Modifier.padding(6.dp))
+    Spacer(modifier = Modifier.padding(Dimens.spacerPadding))
 }
 
 @Composable
 fun MyCreditCardTitle() {
-    Text(text = "Introduce tu tarjeta de crédito:", modifier = Modifier.fillMaxWidth())
+    Text(text = stringResource(R.string.add_credit_card_into_text_field), modifier = Modifier.fillMaxWidth())
 }
 
 @Composable
@@ -282,6 +296,6 @@ fun MyBasicCreditCardTextField(
             Modifier
                 .fillMaxWidth()
                 .background(Color.LightGray)
-                .padding(16.dp),
+                .padding(Dimens.basicTextFieldPadding),
     )
 }
