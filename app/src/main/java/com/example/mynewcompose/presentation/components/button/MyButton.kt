@@ -11,8 +11,11 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -31,7 +34,9 @@ import com.example.mynewcompose.R
 import com.example.mynewcompose.ui.theme.MyNewTheme.dimens as Dimens
 
 // region Default
-@Preview(showSystemUi = true)
+@Preview(
+    showSystemUi = true,
+)
 @Composable
 fun MyButtonParentPreview() {
     Scaffold { innerPadding ->
@@ -58,6 +63,8 @@ fun MyButtonParent(modifier: Modifier) {
         MyBasicButtonExamples()
         MyOutlinedButtonExamples()
         MyTextButtonExamples()
+        MyElevatedButtonExamples()
+        MyFilledTonalButtonExamples()
     }
 }
 
@@ -87,6 +94,20 @@ fun MyTextButtonExamples() {
     MyButtonTitle(stringResource(R.string.text_button))
     MyTextButton()
     MyPersonalizedTextButton()
+}
+
+@Composable
+fun MyElevatedButtonExamples() {
+    MyButtonTitle(stringResource(R.string.elevated_button))
+    MyElevatedButton()
+    MyPersonalizedElevatedButton()
+}
+
+@Composable
+fun MyFilledTonalButtonExamples() {
+    MyButtonTitle(stringResource(R.string.filled_tonal_button))
+    MyFilledTonalButton()
+    MyPersonalizedFilledTonalButton()
 }
 // endregion
 
@@ -303,3 +324,80 @@ fun MyPersonalizedTextButton() {
 }
 
 // endregion
+
+// region ElevatedButton
+@Composable
+fun MyElevatedButton() {
+    val logTag = stringResource(R.string.log_tag)
+    val logMsg = stringResource(R.string.log_i_elevated_button_basic)
+    ElevatedButton(
+        onClick = { Log.i(logTag, logMsg) },
+    ) {
+        Text(text = stringResource(R.string.button_tap_me), color = Color.Magenta)
+    }
+}
+
+@Composable
+fun MyPersonalizedElevatedButton() {
+    val logTag = stringResource(R.string.log_tag)
+    val logMsg = stringResource(R.string.log_i_elevated_button_colors)
+    ElevatedButton(
+        onClick = { Log.i(logTag, logMsg) },
+        shape = RoundedCornerShape(20),
+        enabled = true,
+        elevation =
+            ButtonDefaults.elevatedButtonElevation(
+                defaultElevation = 6.dp,
+                pressedElevation = 2.dp,
+                disabledElevation = 0.dp,
+            ),
+        colors =
+            ButtonDefaults.textButtonColors(
+                contentColor = Color.Green,
+                containerColor = Color.Blue,
+                disabledContentColor = Color.DarkGray,
+                disabledContainerColor = Color.LightGray,
+            ),
+    ) {
+        Text(text = stringResource(R.string.button_tap_me))
+    }
+}
+// endregion
+
+// region FilledTonalButton
+@Composable
+fun MyFilledTonalButton() {
+    val logTag = stringResource(R.string.log_tag)
+    val logMsg = stringResource(R.string.log_i_filled_tonal_button_basic)
+    FilledTonalButton(
+        onClick = { Log.i(logTag, logMsg) },
+    ) {
+        Text(text = stringResource(R.string.button_tap_me))
+    }
+}
+
+/*
+* Este botón es una chorrada. Es lo MISMO que un botón normal,
+* pero viene por defecto con un background con un color ligeramente más suavito que el color primario de la aplicación.
+* Fin.
+* */
+
+@Composable
+fun MyPersonalizedFilledTonalButton() {
+    val logTag = stringResource(R.string.log_tag)
+    val logMsg = stringResource(R.string.log_i_filled_tonal_button_colors)
+    FilledTonalButton(
+        onClick = { Log.i(logTag, logMsg) },
+        shape = RoundedCornerShape(20),
+        border = BorderStroke(3.dp, Brush.linearGradient(listOf(Color.Yellow, Color.Green))),
+        colors =
+            ButtonDefaults.textButtonColors(
+                contentColor = Color.Green,
+                containerColor = Color.Blue,
+                disabledContentColor = Color.DarkGray,
+                disabledContainerColor = Color.LightGray,
+            ),
+    ) {
+        Text(text = stringResource(R.string.button_tap_me))
+    }
+}
