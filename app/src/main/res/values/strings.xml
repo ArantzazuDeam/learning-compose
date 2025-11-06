@@ -14,6 +14,10 @@
     <string name="log_i_button_colors_changed">El fondo y contenido de este botón está modificado.</string>
     <string name="log_i_button_colors_changed_disabled">Este botón está deshabilitado pero el fondo y contenido de este botón también están modificados. (Este texto no debería poder leerse)</string>
     <string name="log_i_button_colors_text_le_importa_un_fuck">Al texto dentro de este botón le importa un fuck el color que haya definido el botón para él.</string>
+    <string name="log_i_outlined_button_basic">Este OutlinedButton es basiquito.</string>
+    <string name="log_i_outlined_button_colors">Este OutlinedButton es idéntico a uno normal porque lo hemos personalizado como nos ha dado la gana.</string>
+    <string name="log_i_text_button_basic">Este TextButton es basiquito.</string>
+    <string name="log_i_text_button_colors">Este TextButton es idéntico a uno normal porque lo hemos personalizado como nos ha dado la gana.</string>
 
     <!-- Login -->
     <string name="log_in">Iniciar sesión</string>
@@ -42,4 +46,7 @@
 
     <!-- Buttons -->
     <string name="button_tap_me">Púlsame</string>
+    <string name="button">Button</string>
+    <string name="outlined_button">OutlinedButton</string>
+    <string name="text_button">TextButton</string>
 </resources>

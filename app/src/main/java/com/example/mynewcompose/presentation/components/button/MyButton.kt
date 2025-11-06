@@ -5,24 +5,32 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.mynewcompose.R
 import com.example.mynewcompose.ui.theme.MyNewTheme.dimens as Dimens
 
+// region Default
 @Preview(showSystemUi = true)
 @Composable
 fun MyButtonParentPreview() {
@@ -42,20 +50,55 @@ fun MyButtonParent(modifier: Modifier) {
             modifier
                 .fillMaxSize()
                 .padding(Dimens.columnPadding)
-                .paddingFromBaseline(Dimens.columnPaddingFromBaseline),
+                .paddingFromBaseline(Dimens.columnPaddingFromBaseline)
+                .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(Dimens.columnVerticalSpacing),
     ) {
-        MyBasicButton()
-        MyDisabledButton()
-        MyRoundedButton()
-        MyPercentageRoundedButton()
-        MyBorderButton()
-        MyBorderGradientButton()
-        MyChangedColorsButton()
-        MyDisabledChangedColorsButton()
-        MyTextLeImportaUnFuckElContainerColorDefinidoEnElButton()
+        MyBasicButtonExamples()
+        MyOutlinedButtonExamples()
+        MyTextButtonExamples()
     }
+}
+
+@Composable
+fun MyBasicButtonExamples() {
+    MyButtonTitle(stringResource(R.string.button))
+    MyBasicButton()
+    MyDisabledButton()
+    MyRoundedButton()
+    MyPercentageRoundedButton()
+    MyBorderButton()
+    MyBorderGradientButton()
+    MyChangedColorsButton()
+    MyDisabledChangedColorsButton()
+    MyTextLeImportaUnFuckElContainerColorDefinidoEnElButton()
+}
+
+@Composable
+fun MyOutlinedButtonExamples() {
+    MyButtonTitle(stringResource(R.string.outlined_button))
+    MyBasicOutlinedButton()
+    MyPersonalizedOutlinedButton()
+}
+
+@Composable
+fun MyTextButtonExamples() {
+    MyButtonTitle(stringResource(R.string.text_button))
+    MyTextButton()
+    MyPersonalizedTextButton()
+}
+// endregion
+
+// region Button
+@Composable
+fun MyButtonTitle(text: String) {
+    Text(
+        text = text,
+        textAlign = TextAlign.Start,
+        fontSize = 28.sp,
+        modifier = Modifier.fillMaxWidth(),
+    )
 }
 
 @Composable
@@ -189,3 +232,74 @@ fun MyTextLeImportaUnFuckElContainerColorDefinidoEnElButton() {
         Text(text = stringResource(R.string.button_tap_me), color = Color.Magenta)
     }
 }
+
+// endregion
+
+// region OutlinedButton
+
+@Composable
+fun MyBasicOutlinedButton() {
+    val logTag = stringResource(R.string.log_tag)
+    val logMsg = stringResource(R.string.log_i_outlined_button_basic)
+    OutlinedButton(
+        onClick = { Log.i(logTag, logMsg) },
+    ) {
+        Text(text = stringResource(R.string.button_tap_me), color = Color.Magenta)
+    }
+}
+
+@Composable
+fun MyPersonalizedOutlinedButton() {
+    val logTag = stringResource(R.string.log_tag)
+    val logMsg = stringResource(R.string.log_i_outlined_button_colors)
+    OutlinedButton(
+        onClick = { Log.i(logTag, logMsg) },
+        shape = RoundedCornerShape(20),
+        border = BorderStroke(3.dp, Brush.linearGradient(listOf(Color.Yellow, Color.Green))),
+        colors =
+            ButtonDefaults.outlinedButtonColors(
+                contentColor = Color.Green,
+                containerColor = Color.Blue,
+                disabledContentColor = Color.DarkGray,
+                disabledContainerColor = Color.LightGray,
+            ),
+    ) {
+        Text(text = stringResource(R.string.button_tap_me))
+    }
+}
+
+// endRegion
+
+// region TextButton
+@Composable
+fun MyTextButton() {
+    val logTag = stringResource(R.string.log_tag)
+    val logMsg = stringResource(R.string.log_i_text_button_basic)
+    TextButton(
+        onClick = { Log.i(logTag, logMsg) },
+    ) {
+        Text(text = stringResource(R.string.button_tap_me), color = Color.Magenta)
+    }
+}
+
+@Composable
+fun MyPersonalizedTextButton() {
+    val logTag = stringResource(R.string.log_tag)
+    val logMsg = stringResource(R.string.log_i_text_button_colors)
+    TextButton(
+        onClick = { Log.i(logTag, logMsg) },
+        shape = RoundedCornerShape(20),
+        border = BorderStroke(3.dp, Brush.linearGradient(listOf(Color.Yellow, Color.Green))),
+        colors =
+            ButtonDefaults.textButtonColors(
+                contentColor = Color.Green,
+                containerColor = Color.Blue,
+                disabledContentColor = Color.DarkGray,
+                disabledContainerColor = Color.LightGray,
+            ),
+    ) {
+        Text(text = stringResource(R.string.button_tap_me))
+    }
+}
+
+// endregion
