@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.mynewcompose.presentation.components.button.MyButtonParent
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.text.MyTextFieldParent
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
@@ -76,7 +77,8 @@ class MainActivity : ComponentActivity() {
 //        MyThirdButtonCounter()
 //        TapMyText1(modifier)
 //        TapMySharingTexts(modifier)
-        MyTextFieldParent(modifier)
+//        MyTextFieldParent(modifier)
+        MyButtonParent(modifier)
     }
 
     @Preview(showBackground = true)

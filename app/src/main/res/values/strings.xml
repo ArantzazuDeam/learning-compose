@@ -1,7 +1,21 @@
 <resources>
     <string name="app_name">MyNewCompose</string>
 
-    <!-- Log in -->
+    <!-- Logs -->
+    <string name="log_tag">Arantxa informa</string>
+
+    <!-- Logs messages -->
+    <string name="log_i_button_enabled">El botón pulsado está habilitado.</string>
+    <string name="log_i_button_disabled">El botón pulsado está deshabilitado. (Este texto no debería poder leerse)</string>
+    <string name="log_i_button_rounded">Las esquinas de este botón son redonditas (dp).</string>
+    <string name="log_i_button_rounded_percentage">Las esquinas de este botón son redonditas (porcentaje).</string>
+    <string name="log_i_button_border">Este botón tiene un borde de un color fijo.</string>
+    <string name="log_i_button_border_gradient">Este botón tiene un borde con un degradado de color.</string>
+    <string name="log_i_button_colors_changed">El fondo y contenido de este botón está modificado.</string>
+    <string name="log_i_button_colors_changed_disabled">Este botón está deshabilitado pero el fondo y contenido de este botón también están modificados. (Este texto no debería poder leerse)</string>
+    <string name="log_i_button_colors_text_le_importa_un_fuck">Al texto dentro de este botón le importa un fuck el color que haya definido el botón para él.</string>
+
+    <!-- Login -->
     <string name="log_in">Iniciar sesión</string>
 
     <!-- Form titles -->
@@ -26,4 +40,6 @@
     <string name="hint_show_password">Mostrar contraseña</string>
     <string name="hint_hide_password">Ocultar contraseña</string>
 
+    <!-- Buttons -->
+    <string name="button_tap_me">Púlsame</string>
 </resources>

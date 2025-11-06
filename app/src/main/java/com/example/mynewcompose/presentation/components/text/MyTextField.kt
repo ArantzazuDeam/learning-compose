@@ -37,13 +37,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.mynewcompose.R
 import com.example.mynewcompose.utils.constant.STRING_EMPTY
 import com.example.mynewcompose.ui.theme.MyNewTheme.dimens as Dimens
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyTextFieldParentPreview() {
     Scaffold { innerPadding ->
