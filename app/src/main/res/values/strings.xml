@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MyNewCompose</string>
 
+    <!-- Content description -->
+    <string name="content_description_decor_cat">"Imagen decorativa con gatos"</string>
+
     <!-- Logs -->
     <string name="log_tag">Arantxa informa</string>
 

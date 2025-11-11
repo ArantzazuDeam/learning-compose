@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.button.MyButtonParent
+import com.example.mynewcompose.presentation.components.imageAndIcon.MyParentImage
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 
@@ -77,7 +78,8 @@ class MainActivity : ComponentActivity() {
 //        TapMyText1(modifier)
 //        TapMySharingTexts(modifier)
 //        MyTextFieldParent(modifier)
-        MyButtonParent(modifier)
+//        MyButtonParent(modifier)
+        MyParentImage(modifier)
     }
 
     @Preview(showBackground = true)
