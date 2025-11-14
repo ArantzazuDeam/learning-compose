@@ -10,9 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.mynewcompose.presentation.components.button.MyButtonParent
-import com.example.mynewcompose.presentation.components.imageAndIcon.MyParentImage
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
+import com.example.mynewcompose.presentation.components.progress.MyParentProgress
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -79,7 +78,8 @@ class MainActivity : ComponentActivity() {
 //        TapMySharingTexts(modifier)
 //        MyTextFieldParent(modifier)
 //        MyButtonParent(modifier)
-        MyParentImage(modifier)
+//        MyParentImage(modifier)
+        MyParentProgress(modifier)
     }
 
     @Preview(showBackground = true)
