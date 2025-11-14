@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.fromColorLong
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mynewcompose.ui.theme.MyNewTheme.dimens as Dimens
@@ -61,7 +60,9 @@ fun MyFirstCircularProgressIndicator() {
 @Composable
 fun MyLinearProgressIndicator() {
     LinearProgressIndicator(
-        modifier = Modifier.width(400.dp).height(10.dp),
+        modifier = Modifier
+            .width(400.dp)
+            .height(10.dp),
         color = Color.Magenta,
         trackColor = Color.LightGray,
         strokeCap = StrokeCap.Round,

@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
-import com.example.mynewcompose.presentation.components.progress.MyParentProgress
+import com.example.mynewcompose.presentation.components.progress.MyParentProgressAdvance
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyNewComposeAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    testCapitulos(
+                    TestCapitulos(
                         modifier = Modifier.padding(innerPadding),
                     )
                 }
@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun testSecciones() {
+    private fun TestSecciones() {
 //        /* Sección 3 */
 //        MyStateExample()
 //
@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun testCapitulos(modifier: Modifier) {
+    private fun TestCapitulos(modifier: Modifier) {
 //        MyFirstButtonCounter()
 //        MySecondButtonCounter()
 //        MyThirdButtonCounter()
@@ -79,14 +79,15 @@ class MainActivity : ComponentActivity() {
 //        MyTextFieldParent(modifier)
 //        MyButtonParent(modifier)
 //        MyParentImage(modifier)
-        MyParentProgress(modifier)
+//        MyParentProgress(modifier)
+        MyParentProgressAdvance(modifier)
     }
 
     @Preview(showBackground = true)
     @Composable
     fun DefaultPreview() {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-            testCapitulos(
+            TestCapitulos(
                 modifier = Modifier.padding(innerPadding),
             )
         }
