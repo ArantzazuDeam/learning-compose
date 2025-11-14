@@ -14,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -50,6 +51,7 @@ fun MyParentImage(modifier: Modifier) {
                 .paddingFromBaseline(Dimens.columnPaddingFromBaseline),
         verticalArrangement = Arrangement.spacedBy(Dimens.columnVerticalSpacing),
     ) {
+        MyIcon()
         MyNetworkImage()
         MyFirstImage()
         MyFirstRoundedImage()
@@ -146,5 +148,15 @@ fun MyNetworkImage() {
                             colors = listOf(Color.Red, Color.Magenta, Color.Blue),
                         ),
                 ),
+    )
+}
+
+@Composable
+fun MyIcon() {
+    Icon(
+        painter = painterResource(R.drawable.ic_personita),
+        contentDescription = stringResource(R.string.content_description_icon_person),
+        modifier = Modifier.size(200.dp),
+        tint = Color.Blue,
     )
 }
