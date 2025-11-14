@@ -26,8 +26,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import com.example.mynewcompose.R
 import com.example.mynewcompose.ui.theme.MyNewTheme.dimens as Dimens
+
+const val IMG_URL_CAT =
+    "https://hips.hearstapps.com/hmg-prod/images/ginger-maine-coon-kitten-running-on-lawn-in-royalty-free-image-1719608142.jpg?crop=1xw:0.84415xh;0,0.185xh"
 
 @Preview(showSystemUi = true)
 @Composable
@@ -46,6 +50,7 @@ fun MyParentImage(modifier: Modifier) {
                 .paddingFromBaseline(Dimens.columnPaddingFromBaseline),
         verticalArrangement = Arrangement.spacedBy(Dimens.columnVerticalSpacing),
     ) {
+        MyNetworkImage()
         MyFirstImage()
         MyFirstRoundedImage()
         MyPercentageRoundedImage()
@@ -123,5 +128,23 @@ fun MyRectangleImage() {
                 .size(200.dp)
                 .clip(RectangleShape),
         contentScale = ContentScale.FillWidth,
+    )
+}
+
+@Composable
+fun MyNetworkImage() {
+    AsyncImage(
+        model = IMG_URL_CAT,
+        contentDescription = stringResource(R.string.content_description_decor_cat),
+        contentScale = ContentScale.Fit,
+        modifier =
+            Modifier
+                .size(200.dp)
+                .background(
+                    brush =
+                        linearGradient(
+                            colors = listOf(Color.Red, Color.Magenta, Color.Blue),
+                        ),
+                ),
     )
 }
