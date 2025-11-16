@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
-import com.example.mynewcompose.presentation.components.progress.MyParentLottieProgress
+import com.example.mynewcompose.presentation.components.selector.MyParentSwitchControl
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -81,7 +81,8 @@ class MainActivity : ComponentActivity() {
 //        MyParentImage(modifier)
 //        MyParentProgress(modifier)
 //        MyParentProgressAdvance(modifier)
-        MyParentLottieProgress(modifier)
+//        MyParentLottieProgress(modifier)
+        MyParentSwitchControl(modifier)
     }
 
     @Preview(showBackground = true)
