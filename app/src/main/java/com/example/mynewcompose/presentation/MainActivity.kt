@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
-import com.example.mynewcompose.presentation.components.selector.MyParentAdvanceCheckbox
+import com.example.mynewcompose.presentation.components.selector.MyParentTriStateCheckBox
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -84,7 +84,8 @@ class MainActivity : ComponentActivity() {
 //        MyParentLottieProgress(modifier)
 //        MyParentSwitchControl(modifier)
 //        MyParentCheckbox(modifier)
-        MyParentAdvanceCheckbox(modifier)
+//        MyParentAdvanceCheckbox(modifier)
+        MyParentTriStateCheckBox(modifier)
     }
 
     @Preview(showBackground = true)
