@@ -7,9 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.mynewcompose.presentation.components.dropdownMenu.MyExposedDropdownMenu
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.scaffold.MyParentScaffold
 import com.example.mynewcompose.presentation.components.scaffold.MyTopAppBar
@@ -37,13 +41,21 @@ class MainActivity : ComponentActivity() {
          */
         // New way
         setContent {
+            val snackbarHostState = remember { SnackbarHostState() }
             MyNewComposeAppTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = { MyTopAppBar() },
+                    snackbarHost = {
+                        SnackbarHost(hostState = snackbarHostState)
+                    },
                 ) { innerPadding ->
-                    TestCapitulos(
+//                    TestCapitulos(
+//                        modifier = Modifier.padding(innerPadding),
+//                    )
+                    ScaffoldCapitulo(
                         modifier = Modifier.padding(innerPadding),
+                        snackbarHostState = snackbarHostState,
                     )
                 }
             }
@@ -97,8 +109,15 @@ class MainActivity : ComponentActivity() {
 //        MyRangeParentSlider(modifier)
 //        MyDropDownItemParent(modifier)
 //        MyParentDropdownMenu(modifier)
-//        MyExposedDropdownMenu(modifier)
-        MyParentScaffold(modifier)
+        MyExposedDropdownMenu(modifier)
+    }
+
+    @Composable
+    fun ScaffoldCapitulo(
+        modifier: Modifier,
+        snackbarHostState: SnackbarHostState,
+    ) {
+        MyParentScaffold(modifier, snackbarHostState)
     }
 
     @Preview(showBackground = true)
