@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mynewcompose.R
 import com.example.mynewcompose.ui.theme.MyNewTheme.dimens as Dimens
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyProgressAdvanceParentPreview() {
     Scaffold { innerPadding ->

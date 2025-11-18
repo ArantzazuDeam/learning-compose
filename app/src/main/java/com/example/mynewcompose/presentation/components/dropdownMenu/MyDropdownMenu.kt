@@ -32,7 +32,7 @@ import com.example.mynewcompose.ui.theme.Orange50
 import com.example.mynewcompose.ui.theme.Pink40
 import com.example.mynewcompose.ui.theme.PurpleGrey80
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyDropdownMenuPreview() {
     Scaffold { innerPadding ->

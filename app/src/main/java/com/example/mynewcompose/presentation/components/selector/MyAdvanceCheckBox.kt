@@ -24,7 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.state.CheckBoxState
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyAdvanceCheckboxPreview() {
     Scaffold { innerPadding ->

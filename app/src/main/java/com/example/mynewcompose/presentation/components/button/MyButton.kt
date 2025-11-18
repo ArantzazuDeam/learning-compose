@@ -33,9 +33,7 @@ import com.example.mynewcompose.R
 import com.example.mynewcompose.ui.theme.MyNewTheme.dimens as Dimens
 
 // region Default
-@Preview(
-    showSystemUi = true,
-)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyButtonParentPreview() {
     Scaffold { innerPadding ->

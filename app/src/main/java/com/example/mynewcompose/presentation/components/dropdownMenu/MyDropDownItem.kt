@@ -25,7 +25,7 @@ import com.example.mynewcompose.R
 import com.example.mynewcompose.ui.theme.Orange50
 import com.example.mynewcompose.ui.theme.PurpleGrey80
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyDropDownItemPreview() {
     Scaffold { innerPadding ->

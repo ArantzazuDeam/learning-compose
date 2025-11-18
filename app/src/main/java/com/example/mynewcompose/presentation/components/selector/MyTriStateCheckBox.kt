@@ -44,7 +44,7 @@ private val ex3CheckBoxState =
         checked = true,
     )
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyTriStateCheckBoxPreview() {
     Scaffold { innerPadding ->

@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mynewcompose.R
 import com.example.mynewcompose.utils.constant.FLOAT_ZERO
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyAdvanceSliderPreview() {
     Scaffold { innerPadding ->

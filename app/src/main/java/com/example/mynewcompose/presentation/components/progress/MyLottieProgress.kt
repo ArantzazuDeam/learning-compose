@@ -15,7 +15,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.mynewcompose.R
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyLottieProgressParentPreview() {
     Scaffold { innerPadding ->

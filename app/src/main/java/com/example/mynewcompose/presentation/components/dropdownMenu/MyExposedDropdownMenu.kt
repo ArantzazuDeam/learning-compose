@@ -26,7 +26,7 @@ import com.example.mynewcompose.R
 import com.example.mynewcompose.ui.theme.Orange50
 import com.example.mynewcompose.utils.constant.STRING_EMPTY
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @Composable
 fun MyExposedDropdownMenuPreview() {
     Scaffold { innerPadding ->
