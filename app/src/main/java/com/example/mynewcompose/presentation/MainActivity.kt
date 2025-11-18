@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.button.MyFab
 import com.example.mynewcompose.presentation.components.dropdownMenu.MyExposedDropdownMenu
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
+import com.example.mynewcompose.presentation.components.scaffold.MyNavigationBar
 import com.example.mynewcompose.presentation.components.scaffold.MyParentScaffold
 import com.example.mynewcompose.presentation.components.scaffold.MyTopAppBar
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
@@ -53,6 +54,7 @@ class MainActivity : ComponentActivity() {
                     },
                     floatingActionButton = { MyFab() },
                     floatingActionButtonPosition = FabPosition.Center,
+                    bottomBar = { MyNavigationBar() },
                 ) { innerPadding ->
 //                    TestCapitulos(
 //                        modifier = Modifier.padding(innerPadding),
