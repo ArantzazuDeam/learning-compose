@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -13,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.mynewcompose.presentation.components.button.MyFab
 import com.example.mynewcompose.presentation.components.dropdownMenu.MyExposedDropdownMenu
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.scaffold.MyParentScaffold
@@ -49,6 +51,8 @@ class MainActivity : ComponentActivity() {
                     snackbarHost = {
                         SnackbarHost(hostState = snackbarHostState)
                     },
+                    floatingActionButton = { MyFab() },
+                    floatingActionButtonPosition = FabPosition.Center,
                 ) { innerPadding ->
 //                    TestCapitulos(
 //                        modifier = Modifier.padding(innerPadding),
