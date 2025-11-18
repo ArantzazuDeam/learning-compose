@@ -63,4 +63,6 @@
     <!-- Options -->
     <string name="look_options">Ver opciones</string>
     <string name="option_number">Opción %1$s</string>
+    <string name="option">Opción</string>
+    <string name="language">Idioma</string>
 </resources>
