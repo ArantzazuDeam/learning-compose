@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.scaffold.MyParentScaffold
+import com.example.mynewcompose.presentation.components.scaffold.MyTopAppBar
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +38,10 @@ class MainActivity : ComponentActivity() {
         // New way
         setContent {
             MyNewComposeAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { MyTopAppBar() },
+                ) { innerPadding ->
                     TestCapitulos(
                         modifier = Modifier.padding(innerPadding),
                     )

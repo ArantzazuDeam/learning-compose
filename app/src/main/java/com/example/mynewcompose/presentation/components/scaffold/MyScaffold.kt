@@ -12,7 +12,11 @@ import androidx.compose.ui.tooling.preview.Preview
 @Preview(showSystemUi = true)
 @Composable
 fun MyScaffoldPreview() {
-    Scaffold { innerPadding ->
+    Scaffold(
+        topBar = {
+            MyTopAppBar()
+        },
+    ) { innerPadding ->
         MyParentScaffold(modifier = Modifier.padding(innerPadding))
     }
 }
