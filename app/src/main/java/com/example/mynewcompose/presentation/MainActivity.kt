@@ -10,8 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.mynewcompose.presentation.components.dropdownMenu.MyExposedDropdownMenu
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
+import com.example.mynewcompose.presentation.components.scaffold.MyParentScaffold
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -93,7 +93,8 @@ class MainActivity : ComponentActivity() {
 //        MyRangeParentSlider(modifier)
 //        MyDropDownItemParent(modifier)
 //        MyParentDropdownMenu(modifier)
-        MyExposedDropdownMenu(modifier)
+//        MyExposedDropdownMenu(modifier)
+        MyParentScaffold(modifier)
     }
 
     @Preview(showBackground = true)
