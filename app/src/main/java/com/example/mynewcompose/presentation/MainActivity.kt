@@ -18,7 +18,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.button.MyFab
-import com.example.mynewcompose.presentation.components.dropdownMenu.MyExposedDropdownMenu
+import com.example.mynewcompose.presentation.components.card.MyParentCard
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.scaffold.MyModalDrawer
 import com.example.mynewcompose.presentation.components.scaffold.MyNavigationBar
@@ -75,13 +75,13 @@ class MainActivity : ComponentActivity() {
                         floatingActionButtonPosition = FabPosition.Center,
                         bottomBar = { MyNavigationBar() },
                     ) { innerPadding ->
-//                    TestCapitulos(
-//                        modifier = Modifier.padding(innerPadding),
-//                    )
-                        ScaffoldCapitulo(
+                        TestCapitulos(
                             modifier = Modifier.padding(innerPadding),
-                            snackbarHostState = snackbarHostState,
                         )
+//                        ScaffoldCapitulo(
+//                            modifier = Modifier.padding(innerPadding),
+//                            snackbarHostState = snackbarHostState,
+//                        )
                     }
                 }
             }
@@ -135,7 +135,8 @@ class MainActivity : ComponentActivity() {
 //        MyRangeParentSlider(modifier)
 //        MyDropDownItemParent(modifier)
 //        MyParentDropdownMenu(modifier)
-        MyExposedDropdownMenu(modifier)
+//        MyExposedDropdownMenu(modifier)
+        MyParentCard(modifier)
     }
 
     @Composable
