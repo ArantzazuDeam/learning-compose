@@ -31,6 +31,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mynewcompose.presentation.components.badge.MyBadgeBox
 import com.example.mynewcompose.ui.theme.Green100
 import com.example.mynewcompose.ui.theme.Pink100
 import com.example.mynewcompose.ui.theme.Pink40
@@ -128,6 +129,7 @@ fun MyCard() {
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            MyBadgeBox()
             MyCircleWorkingAsAnAvatar()
             MyBasicContentCard(
                 title = "Arantzazu De Alba",
