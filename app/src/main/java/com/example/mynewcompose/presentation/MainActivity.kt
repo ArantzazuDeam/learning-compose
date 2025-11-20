@@ -18,11 +18,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.button.MyFab
-import com.example.mynewcompose.presentation.components.dialog.MyMultipleDialogManager
+import com.example.mynewcompose.presentation.components.dialog.MyDatePickerManager
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.scaffold.MyModalDrawer
 import com.example.mynewcompose.presentation.components.scaffold.MyNavigationBar
-import com.example.mynewcompose.presentation.components.scaffold.MyParentScaffold
 import com.example.mynewcompose.presentation.components.scaffold.MyTopAppBar
 import com.example.mynewcompose.ui.theme.MyNewComposeAppTheme
 import kotlinx.coroutines.launch
@@ -75,13 +74,13 @@ class MainActivity : ComponentActivity() {
                         floatingActionButtonPosition = FabPosition.Center,
                         bottomBar = { MyNavigationBar() },
                     ) { innerPadding ->
-                        TestCapitulos(
-                            modifier = Modifier.padding(innerPadding),
-                        )
-//                        ScaffoldCapitulo(
+//                        TestCapitulos(
 //                            modifier = Modifier.padding(innerPadding),
-//                            snackbarHostState = snackbarHostState,
 //                        )
+                        ScaffoldCapitulo(
+                            modifier = Modifier.padding(innerPadding),
+                            snackbarHostState = snackbarHostState,
+                        )
                     }
                 }
             }
@@ -137,7 +136,7 @@ class MainActivity : ComponentActivity() {
 //        MyParentDropdownMenu(modifier)
 //        MyExposedDropdownMenu(modifier)
 //        MyParentCard(modifier)
-        MyMultipleDialogManager(modifier)
+//        MyMultipleDialogManager(modifier)
     }
 
     @Composable
@@ -145,7 +144,8 @@ class MainActivity : ComponentActivity() {
         modifier: Modifier,
         snackbarHostState: SnackbarHostState,
     ) {
-        MyParentScaffold(modifier, snackbarHostState)
+//        MyParentScaffold(modifier, snackbarHostState)
+        MyDatePickerManager(modifier, snackbarHostState)
     }
 
     @Preview(showBackground = true)
