@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.button.MyFab
 import com.example.mynewcompose.presentation.components.dialog.MyDatePickerManager
+import com.example.mynewcompose.presentation.components.dialog.MyTimePickerManager
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.scaffold.MyModalDrawer
 import com.example.mynewcompose.presentation.components.scaffold.MyNavigationBar
@@ -74,13 +75,13 @@ class MainActivity : ComponentActivity() {
                         floatingActionButtonPosition = FabPosition.Center,
                         bottomBar = { MyNavigationBar() },
                     ) { innerPadding ->
-//                        TestCapitulos(
-//                            modifier = Modifier.padding(innerPadding),
-//                        )
-                        ScaffoldCapitulo(
+                        TestCapitulos(
                             modifier = Modifier.padding(innerPadding),
-                            snackbarHostState = snackbarHostState,
                         )
+//                        ScaffoldCapitulo(
+//                            modifier = Modifier.padding(innerPadding),
+//                            snackbarHostState = snackbarHostState,
+//                        )
                     }
                 }
             }
@@ -137,6 +138,7 @@ class MainActivity : ComponentActivity() {
 //        MyExposedDropdownMenu(modifier)
 //        MyParentCard(modifier)
 //        MyMultipleDialogManager(modifier)
+        MyTimePickerManager(modifier)
     }
 
     @Composable
