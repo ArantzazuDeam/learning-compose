@@ -46,6 +46,10 @@ fun MyButtonOpenDialog(
 ) {
     Button(
         onClick = { onClick() },
+        colors =
+            ButtonDefaults.buttonColors(
+                containerColor = Pink60,
+            ),
     ) {
         Text(text)
     }
