@@ -17,8 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.mynewcompose.presentation.components.advance.InteractionSourceExample
 import com.example.mynewcompose.presentation.components.button.MyFab
-import com.example.mynewcompose.presentation.components.dialog.MyCustomDialogManager
 import com.example.mynewcompose.presentation.components.dialog.MyDatePickerManager
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.scaffold.MyModalDrawer
@@ -139,7 +139,8 @@ class MainActivity : ComponentActivity() {
 //        MyParentCard(modifier)
 //        MyMultipleDialogManager(modifier)
 //        MyTimePickerManager(modifier)
-        MyCustomDialogManager(modifier)
+//        MyCustomDialogManager(modifier)
+        InteractionSourceExample(modifier)
     }
 
     @Composable
