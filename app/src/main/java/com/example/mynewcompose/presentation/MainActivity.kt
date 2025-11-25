@@ -17,7 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.mynewcompose.presentation.components.advance.LaunchedEffectExample
+import com.example.mynewcompose.presentation.components.advance.DerivedStateExample
 import com.example.mynewcompose.presentation.components.button.MyFab
 import com.example.mynewcompose.presentation.components.dialog.MyDatePickerManager
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
@@ -141,7 +141,8 @@ class MainActivity : ComponentActivity() {
 //        MyTimePickerManager(modifier)
 //        MyCustomDialogManager(modifier)
 //        InteractionSourceExample(modifier)
-        LaunchedEffectExample(modifier)
+//        LaunchedEffectExample(modifier)
+        DerivedStateExample(modifier)
     }
 
     @Composable
