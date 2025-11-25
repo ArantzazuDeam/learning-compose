@@ -1,4 +1,4 @@
-package com.example.mynewcompose.presentation.components.advance
+package com.example.mynewcompose.presentation.advance
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

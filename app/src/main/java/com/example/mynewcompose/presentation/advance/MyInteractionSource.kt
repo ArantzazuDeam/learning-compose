@@ -1,4 +1,4 @@
-package com.example.mynewcompose.presentation.components.advance
+package com.example.mynewcompose.presentation.advance
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
