@@ -1,5 +1,18 @@
 package com.example.mynewcompose.presentation.components.list
 
+import com.example.mynewcompose.ui.theme.blueKlein
+import com.example.mynewcompose.ui.theme.blueSky
+import com.example.mynewcompose.ui.theme.greenEmerald
+import com.example.mynewcompose.ui.theme.greySlate
+import com.example.mynewcompose.ui.theme.mintSoft
+import com.example.mynewcompose.ui.theme.orangeDown
+import com.example.mynewcompose.ui.theme.orangePeach
+import com.example.mynewcompose.ui.theme.pinkPale
+import com.example.mynewcompose.ui.theme.purpleDeep
+import com.example.mynewcompose.ui.theme.purpleLavender
+import com.example.mynewcompose.ui.theme.redCoral
+import com.example.mynewcompose.ui.theme.yellowVanilla
+
 val friendList: List<String> =
     listOf(
         "Sofía",
@@ -98,4 +111,20 @@ val friendList: List<String> =
         "Lorena",
         "Esteban",
         "Natalia",
+    )
+
+val colorsList =
+    listOf(
+        yellowVanilla,
+        orangePeach,
+        pinkPale,
+        mintSoft,
+        blueSky,
+        purpleLavender,
+        blueKlein,
+        purpleDeep,
+        greySlate,
+        greenEmerald,
+        orangeDown,
+        redCoral,
     )

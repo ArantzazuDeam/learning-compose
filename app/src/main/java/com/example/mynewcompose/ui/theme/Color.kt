@@ -26,3 +26,17 @@ val Green40 = Color(0xFF37512A)
 
 val BlueGrey100 = Color(0xFFCDD5E5)
 val BlueGrey60 = Color(0xFF647DAF)
+
+// Beatiful colors
+val blueSky = Color(0xFFBDE0FE)
+val mintSoft = Color(0xFFB5FDE2)
+val yellowVanilla = Color(0xFFFDF3D6)
+val orangePeach = Color(0xFFFFD3B0)
+val pinkPale = Color(0xFFFCB7CC)
+val purpleLavender = Color(0xFFC7ADD5)
+val purpleDeep = Color(0xFF4B0082)
+val blueKlein = Color(0xFF002FA7)
+val greySlate = Color(0xFF36454F)
+val greenEmerald = Color(0xFF0AA17F)
+val orangeDown = Color(0xFFFFA71B)
+val redCoral = Color(0xFFFF6B6B)
