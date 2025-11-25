@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.example.mynewcompose.presentation.screen.detail.DetailScreen
 import com.example.mynewcompose.presentation.screen.home.HomeScreen
 import com.example.mynewcompose.presentation.screen.login.LoginScreen
 
@@ -22,7 +24,15 @@ fun NavigationWrapper() {
         composable<Home> {
             HomeScreen(
                 navigateBack = { navController.popBackStack() },
+                navigateToDetail = { id, isValid ->
+                    navController.navigate(Detail(id = id, check = isValid))
+                },
             )
+        }
+        composable<Detail> { navBackStackEntry ->
+            val detail: Detail = navBackStackEntry.toRoute<Detail>()
+            val elementoBooleano = detail.check
+            DetailScreen(detail.id, navigateBack = { navController.popBackStack() })
         }
     }
 }

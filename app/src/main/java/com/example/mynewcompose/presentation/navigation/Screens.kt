@@ -7,3 +7,9 @@ object Login
 
 @Serializable
 object Home
+
+@Serializable
+data class Detail(
+    val id: String,
+    val check: Boolean,
+)
