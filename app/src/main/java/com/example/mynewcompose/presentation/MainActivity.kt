@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mynewcompose.presentation.components.button.MyFab
 import com.example.mynewcompose.presentation.components.dialog.MyDatePickerManager
-import com.example.mynewcompose.presentation.components.list.MySecondAdvanceList
+import com.example.mynewcompose.presentation.components.list.MyScrollList
 import com.example.mynewcompose.presentation.components.oldCourse.MyIcon
 import com.example.mynewcompose.presentation.components.scaffold.MyModalDrawer
 import com.example.mynewcompose.presentation.components.scaffold.MyNavigationBar
@@ -146,7 +146,8 @@ class MainActivity : ComponentActivity() {
 //        MyBasicList(modifier)
 //        MyBasicHorizontalList(modifier) {}
 //        MyAdvanceList(modifier)
-        MySecondAdvanceList(modifier)
+//        MySecondAdvanceList(modifier)
+        MyScrollList(modifier)
     }
 
     @Composable
