@@ -1,4 +1,4 @@
-package com.example.mynewcompose.presentation.screen.detail
+package com.example.mynewcompose.presentation.screen.setting
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,31 +13,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mynewcompose.presentation.model.SettingModel
-import com.example.mynewcompose.ui.theme.Purple100
+import com.example.mynewcompose.ui.theme.BlueGrey100
+import com.example.mynewcompose.ui.theme.BlueGrey60
 
 @Composable
-fun DetailScreen(
-    id: String,
-    navigateToSettings: (SettingModel) -> Unit,
-    navigateBack: () -> Unit,
+fun SettingScreen(
+    settingModel: SettingModel,
+    navigateToHome: () -> Unit,
 ) {
-    val settingModel = SettingModel(id = id, darkMode = true)
     Column(
         modifier =
             Modifier
                 .fillMaxSize()
-                .background(Purple100),
+                .background(BlueGrey100),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(Modifier.weight(1f))
-        Text("Detalle $id", fontSize = 30.sp)
+        Text("Configuración", fontSize = 30.sp, color = BlueGrey60)
         Spacer(Modifier.weight(1f))
-        Button(onClick = { navigateToSettings(settingModel) }) {
-            Text("Configuración")
-        }
-        Button(onClick = { navigateBack() }) {
-            Text("Atrás")
+        Text("Identificador: ${settingModel.id}", color = BlueGrey60)
+        Text("Modo oscuro: ${settingModel.darkMode}", color = BlueGrey60)
+        Spacer(Modifier.weight(1f))
+        Button(onClick = { navigateToHome() }) {
+            Text("Volver al inicio")
         }
         Spacer(Modifier.weight(1f))
     }

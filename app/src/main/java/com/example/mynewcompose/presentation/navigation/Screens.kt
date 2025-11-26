@@ -1,5 +1,6 @@
 package com.example.mynewcompose.presentation.navigation
 
+import com.example.mynewcompose.presentation.model.SettingModel
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -11,5 +12,10 @@ object Home
 @Serializable
 data class Detail(
     val id: String,
-    val check: Boolean,
+    val darkMode: Boolean,
+)
+
+@Serializable
+data class Settings(
+    val settingModel: SettingModel,
 )

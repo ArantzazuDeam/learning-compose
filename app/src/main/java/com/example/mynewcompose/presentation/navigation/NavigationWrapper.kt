@@ -5,9 +5,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.mynewcompose.presentation.model.SettingModel
+import com.example.mynewcompose.presentation.navigation.type.settingModelType
 import com.example.mynewcompose.presentation.screen.detail.DetailScreen
 import com.example.mynewcompose.presentation.screen.home.HomeScreen
 import com.example.mynewcompose.presentation.screen.login.LoginScreen
+import com.example.mynewcompose.presentation.screen.setting.SettingScreen
+import kotlin.reflect.typeOf
 
 @Composable
 fun NavigationWrapper() {
@@ -25,14 +29,29 @@ fun NavigationWrapper() {
             HomeScreen(
                 navigateBack = { navController.popBackStack() },
                 navigateToDetail = { id, isValid ->
-                    navController.navigate(Detail(id = id, check = isValid))
+                    navController.navigate(Detail(id = id, darkMode = isValid))
                 },
             )
         }
         composable<Detail> { navBackStackEntry ->
             val detail: Detail = navBackStackEntry.toRoute<Detail>()
-            val elementoBooleano = detail.check
-            DetailScreen(detail.id, navigateBack = { navController.popBackStack() })
+            DetailScreen(
+                id = detail.id,
+                navigateToSettings = { settingModel ->
+                    navController.navigate(
+                        Settings(settingModel),
+                    )
+                },
+                navigateBack = { navController.popBackStack() },
+            )
+        }
+
+        composable<Settings>(typeMap = mapOf(typeOf<SettingModel>() to settingModelType)) { navBackStackEntry ->
+            val settings: Settings = navBackStackEntry.toRoute<Settings>()
+            SettingScreen(
+                settingModel = settings.settingModel,
+                navigateToHome = { navController.navigate(Home) },
+            )
         }
     }
 }
