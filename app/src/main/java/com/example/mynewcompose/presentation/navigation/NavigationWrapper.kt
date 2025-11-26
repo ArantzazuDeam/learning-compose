@@ -50,7 +50,15 @@ fun NavigationWrapper() {
             val settings: Settings = navBackStackEntry.toRoute<Settings>()
             SettingScreen(
                 settingModel = settings.settingModel,
-                navigateToHome = { navController.navigate(Home) },
+                navigateToLogin = {
+                    navController.navigate(Login) {
+                        popUpTo<Login> {
+                            inclusive =
+                                true // true navega a una nueva pantalla de login y elimina la anterior instancia del login
+                            // inclusive = false, deja en la pila la anterior instancia de login y la nueva. Una mierda.
+                        }
+                    }
+                },
             )
         }
     }

@@ -19,7 +19,7 @@ import com.example.mynewcompose.ui.theme.BlueGrey60
 @Composable
 fun SettingScreen(
     settingModel: SettingModel,
-    navigateToHome: () -> Unit,
+    navigateToLogin: () -> Unit,
 ) {
     Column(
         modifier =
@@ -35,8 +35,8 @@ fun SettingScreen(
         Text("Identificador: ${settingModel.id}", color = BlueGrey60)
         Text("Modo oscuro: ${settingModel.darkMode}", color = BlueGrey60)
         Spacer(Modifier.weight(1f))
-        Button(onClick = { navigateToHome() }) {
-            Text("Volver al inicio")
+        Button(onClick = { navigateToLogin() }) {
+            Text("Cerrar sesión")
         }
         Spacer(Modifier.weight(1f))
     }
