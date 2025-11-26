@@ -6,7 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.mynewcompose.presentation.model.SettingModel
-import com.example.mynewcompose.presentation.navigation.type.settingModelType
+import com.example.mynewcompose.presentation.navigation.type.createNavType
 import com.example.mynewcompose.presentation.screen.detail.DetailScreen
 import com.example.mynewcompose.presentation.screen.home.HomeScreen
 import com.example.mynewcompose.presentation.screen.login.LoginScreen
@@ -46,7 +46,7 @@ fun NavigationWrapper() {
             )
         }
 
-        composable<Settings>(typeMap = mapOf(typeOf<SettingModel>() to settingModelType)) { navBackStackEntry ->
+        composable<Settings>(typeMap = mapOf(typeOf<SettingModel>() to createNavType<SettingModel>())) { navBackStackEntry ->
             val settings: Settings = navBackStackEntry.toRoute<Settings>()
             SettingScreen(
                 settingModel = settings.settingModel,
