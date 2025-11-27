@@ -1,6 +1,7 @@
 package com.example.mynewcompose.presentation.animation
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -12,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +21,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,10 +35,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mynewcompose.ui.theme.Pink120
+import com.example.mynewcompose.presentation.screen.detail.DetailScreen
+import com.example.mynewcompose.presentation.screen.home.HomeScreen
 import com.example.mynewcompose.ui.theme.greenEmerald
 import com.example.mynewcompose.ui.theme.orangePeach
 import com.example.mynewcompose.ui.theme.pinkPale
+import com.example.mynewcompose.ui.theme.yellowVanilla
 
 @Composable
 fun AnimationScreen() {
@@ -42,7 +48,8 @@ fun AnimationScreen() {
         modifier =
             Modifier
                 .fillMaxSize()
-                .background(Pink120),
+                .background(yellowVanilla)
+                .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -52,6 +59,8 @@ fun AnimationScreen() {
         MyAnimatedHiddenViewWithButton()
         Spacer(Modifier.height(16.dp))
         FullAnimateAsStateWithButton()
+        Spacer(Modifier.height(16.dp))
+        MyCrossfade()
     }
 }
 
@@ -101,7 +110,10 @@ fun FullAnimateAsStateWithButton() {
 }
 
 @Composable
-fun FullAnimateAsState(isSelected: Boolean, animatedFloat: Float) {
+fun FullAnimateAsState(
+    isSelected: Boolean,
+    animatedFloat: Float,
+) {
     val animatedColor by animateColorAsState(
         targetValue = if (isSelected) greenEmerald else orangePeach,
     )
@@ -121,4 +133,37 @@ fun FullAnimateAsState(isSelected: Boolean, animatedFloat: Float) {
                 .size(animatedSize)
                 .background(animatedColor.copy(animatedFloat)),
     )
+}
+
+@Composable
+fun MyCrossfade() {
+    var currentScreen by remember { mutableStateOf("Home") }
+    Column {
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+        ) {
+            Button(
+                onClick = { currentScreen = "Home" },
+            ) {
+                Text("Home")
+            }
+            Button(
+                onClick = { currentScreen = "Detail" },
+            ) {
+                Text("Detail")
+            }
+        }
+
+        Crossfade(targetState = currentScreen) { screen ->
+            when (screen) {
+                "Home" -> HomeScreen(navigateBack = {}, navigateToDetail = { _, _ -> })
+                "Detail" ->
+                    DetailScreen(
+                        id = "Prueba crossfade",
+                        navigateToSettings = { },
+                        navigateBack = { },
+                    )
+            }
+        }
+    }
 }
