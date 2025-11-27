@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateOffsetAsState
@@ -26,6 +27,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,6 +43,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mynewcompose.presentation.screen.detail.DetailScreen
 import com.example.mynewcompose.presentation.screen.home.HomeScreen
+import com.example.mynewcompose.ui.theme.Green60
+import com.example.mynewcompose.ui.theme.Purple100
 import com.example.mynewcompose.ui.theme.greenEmerald
 import com.example.mynewcompose.ui.theme.orangePeach
 import com.example.mynewcompose.ui.theme.pinkPale
@@ -69,12 +73,23 @@ fun AnimationScreen() {
         Spacer(Modifier.height(16.dp))
         MyAnimatedContentWithButton()
         Spacer(Modifier.height(16.dp))
+        MyAnimatedContentSizeWithButton()
+        Spacer(Modifier.height(16.dp))
     }
+}
+
+@Composable
+fun MyDividerForAnimation() {
+    HorizontalDivider(
+        thickness = 2.dp,
+        color = Green60,
+    )
 }
 
 @Composable
 fun MyAnimatedHiddenViewWithButton() {
     var isViewShown by remember { mutableStateOf(true) }
+    MyDividerForAnimation()
     Button(onClick = { isViewShown = !isViewShown }) {
         Text(text = if (isViewShown) "Ocultar" else "Mostrar")
     }
@@ -109,6 +124,7 @@ fun FullAnimateAsStateWithButton() {
     val animatedFloat by animateFloatAsState(
         targetValue = if (isSelected) 0.1f else 1f,
     )
+    MyDividerForAnimation()
     Button(onClick = { isSelected = !isSelected }) {
         Text(text = if (isSelected) "Hazlo pequeño" else "Hazlo grande")
     }
@@ -141,11 +157,13 @@ fun FullAnimateAsState(
                 .size(animatedSize)
                 .background(animatedColor.copy(animatedFloat)),
     )
+    Spacer(Modifier.height(10.dp))
 }
 
 @Composable
 fun MyCrossfade() {
     var currentScreen by remember { mutableStateOf("Home") }
+    MyDividerForAnimation()
     Column {
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -179,6 +197,7 @@ fun MyCrossfade() {
 @Composable
 fun MyAnimatedContentWithButton() {
     var number by remember { mutableIntStateOf(0) }
+    MyDividerForAnimation()
     Button(onClick = { number++ }) {
         Text(text = "Sumar")
     }
@@ -200,10 +219,47 @@ fun MyAnimatedContent(number: Int) {
 
             1 -> Text("Ahora tengo el valor 1")
             2 -> FloatingActionButton(onClick = {}) { }
-            3 -> Box(Modifier
-                .size(60.dp)
-                .background(purpleDeep))
+            3 ->
+                Box(
+                    Modifier
+                        .size(60.dp)
+                        .background(purpleDeep),
+                )
+
             else -> Text("Fin de animar")
         }
+    }
+}
+
+@Composable
+fun MyAnimatedContentSizeWithButton() {
+    var expanded by remember { mutableStateOf(false) }
+    MyDividerForAnimation()
+    Button(onClick = { expanded = !expanded }) {
+        Text(text = if (expanded) "Colapsar" else "Expandir")
+    }
+    Spacer(Modifier.height(10.dp))
+    MyAnimatedSizeContent(expanded)
+}
+
+@Composable
+fun MyAnimatedSizeContent(expanded: Boolean) {
+    Box(
+        Modifier
+            .background(purpleDeep)
+            .fillMaxWidth()
+            .animateContentSize()
+            .height(if (expanded) 300.dp else 150.dp)
+            .padding(horizontal = 12.dp),
+    ) {
+        Text(
+            text =
+                "Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.\n" +
+                    "\n" +
+                    "Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.\n" +
+                    "\n" +
+                    "Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot Shiver me timbers gangplank crack Jennys tea cup ballast Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas boatswain schooner gaff booty Jack Tar transom spirits.",
+            color = Purple100,
+        )
     }
 }
