@@ -1,5 +1,6 @@
 package com.example.mynewcompose.presentation.animation
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
@@ -24,15 +25,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mynewcompose.presentation.screen.detail.DetailScreen
@@ -40,6 +44,7 @@ import com.example.mynewcompose.presentation.screen.home.HomeScreen
 import com.example.mynewcompose.ui.theme.greenEmerald
 import com.example.mynewcompose.ui.theme.orangePeach
 import com.example.mynewcompose.ui.theme.pinkPale
+import com.example.mynewcompose.ui.theme.purpleDeep
 import com.example.mynewcompose.ui.theme.yellowVanilla
 
 @Composable
@@ -61,6 +66,9 @@ fun AnimationScreen() {
         FullAnimateAsStateWithButton()
         Spacer(Modifier.height(16.dp))
         MyCrossfade()
+        Spacer(Modifier.height(16.dp))
+        MyAnimatedContentWithButton()
+        Spacer(Modifier.height(16.dp))
     }
 }
 
@@ -164,6 +172,38 @@ fun MyCrossfade() {
                         navigateBack = { },
                     )
             }
+        }
+    }
+}
+
+@Composable
+fun MyAnimatedContentWithButton() {
+    var number by remember { mutableIntStateOf(0) }
+    Button(onClick = { number++ }) {
+        Text(text = "Sumar")
+    }
+    Text(text = if (number < 4) "Valor actual: $number)" else "Valor actual: $number. (Ya no sigas que es pa ná)")
+    Spacer(Modifier.height(10.dp))
+    MyAnimatedContent(number)
+}
+
+@Composable
+fun MyAnimatedContent(number: Int) {
+    AnimatedContent(targetState = number) { result ->
+        when (result) {
+            0 ->
+                Box(
+                    Modifier
+                        .size(50.dp)
+                        .background(Color.Red),
+                )
+
+            1 -> Text("Ahora tengo el valor 1")
+            2 -> FloatingActionButton(onClick = {}) { }
+            3 -> Box(Modifier
+                .size(60.dp)
+                .background(purpleDeep))
+            else -> Text("Fin de animar")
         }
     }
 }
