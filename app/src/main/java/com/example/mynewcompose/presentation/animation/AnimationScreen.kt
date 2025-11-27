@@ -3,15 +3,24 @@ package com.example.mynewcompose.presentation.animation
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.animateColor
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateOffsetAsState
+import androidx.compose.animation.core.animateValue
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,16 +48,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mynewcompose.presentation.screen.detail.DetailScreen
 import com.example.mynewcompose.presentation.screen.home.HomeScreen
 import com.example.mynewcompose.ui.theme.Green60
 import com.example.mynewcompose.ui.theme.Purple100
+import com.example.mynewcompose.ui.theme.blueKlein
+import com.example.mynewcompose.ui.theme.blueSky
 import com.example.mynewcompose.ui.theme.greenEmerald
 import com.example.mynewcompose.ui.theme.orangePeach
 import com.example.mynewcompose.ui.theme.pinkPale
 import com.example.mynewcompose.ui.theme.purpleDeep
+import com.example.mynewcompose.ui.theme.redCoral
 import com.example.mynewcompose.ui.theme.yellowVanilla
 
 @Composable
@@ -74,6 +87,9 @@ fun AnimationScreen() {
         MyAnimatedContentWithButton()
         Spacer(Modifier.height(16.dp))
         MyAnimatedContentSizeWithButton()
+        Spacer(Modifier.height(16.dp))
+        MyDividerForAnimation()
+        MyInfiniteTransition()
         Spacer(Modifier.height(16.dp))
     }
 }
@@ -201,7 +217,7 @@ fun MyAnimatedContentWithButton() {
     Button(onClick = { number++ }) {
         Text(text = "Sumar")
     }
-    Text(text = if (number < 4) "Valor actual: $number)" else "Valor actual: $number. (Ya no sigas que es pa ná)")
+    Text(text = if (number < 4) "Valor actual: $number" else "Valor actual: $number. (Ya no sigas que es pa ná)")
     Spacer(Modifier.height(10.dp))
     MyAnimatedContent(number)
 }
@@ -218,13 +234,24 @@ fun MyAnimatedContent(number: Int) {
                 )
 
             1 -> Text("Ahora tengo el valor 1")
-            2 -> FloatingActionButton(onClick = {}) { }
+            2 -> FloatingActionButton(onClick = {}) { Text("2") }
             3 ->
                 Box(
                     Modifier
                         .size(60.dp)
                         .background(purpleDeep),
-                )
+                    contentAlignment = Alignment.Center,
+                ) { Text("3", color = Color.White) }
+
+            4 -> Text("Ahora tengo el valor 4, jeje")
+            5 -> FloatingActionButton(onClick = {}) { Text("5") }
+            6 ->
+                Box(
+                    Modifier
+                        .size(60.dp)
+                        .background(greenEmerald),
+                    contentAlignment = Alignment.Center,
+                ) { Text("6", color = Color.White) }
 
             else -> Text("Fin de animar")
         }
@@ -262,4 +289,48 @@ fun MyAnimatedSizeContent(expanded: Boolean) {
             color = Purple100,
         )
     }
+}
+
+@Composable
+fun MyInfiniteTransition() {
+    val infiniteTransition = rememberInfiniteTransition()
+    val backgroundColor by infiniteTransition.animateColor(
+        initialValue = blueSky,
+        targetValue = blueKlein,
+        animationSpec =
+            infiniteRepeatable(
+                animation = tween(2000),
+                repeatMode = RepeatMode.Reverse,
+            ),
+    )
+    val borderColor by infiniteTransition.animateColor(
+        initialValue = greenEmerald,
+        targetValue = redCoral,
+        animationSpec =
+            infiniteRepeatable(
+                animation = tween(2000),
+                repeatMode = RepeatMode.Reverse,
+            ),
+    )
+    val size by infiniteTransition.animateValue(
+        initialValue = 300.dp,
+        targetValue = 150.dp,
+        typeConverter = Dp.VectorConverter,
+        animationSpec =
+            infiniteRepeatable(
+                animation = tween(2000),
+                repeatMode = RepeatMode.Reverse,
+            ),
+    )
+    Box(
+        Modifier
+            .background(backgroundColor)
+            .border(
+                BorderStroke(
+                    width = 4.dp,
+                    color = borderColor,
+                ),
+            ).size(size)
+            .padding(horizontal = 12.dp),
+    )
 }
