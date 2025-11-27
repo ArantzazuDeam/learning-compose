@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.mynewcompose.presentation.animation.AnimationScreen
 import com.example.mynewcompose.presentation.model.SettingModel
 import com.example.mynewcompose.presentation.navigation.type.createNavType
 import com.example.mynewcompose.presentation.screen.detail.DetailScreen
@@ -23,6 +24,7 @@ fun NavigationWrapper() {
         composable<Login> {
             LoginScreen(
                 navigateToDetail = { navController.navigate(Home) },
+                navigateToAnimation = { navController.navigate(Animation) },
             )
         }
         composable<Home> {
@@ -33,6 +35,11 @@ fun NavigationWrapper() {
                 },
             )
         }
+
+        composable<Animation> {
+            AnimationScreen()
+        }
+
         composable<Detail> { navBackStackEntry ->
             val detail: Detail = navBackStackEntry.toRoute<Detail>()
             DetailScreen(

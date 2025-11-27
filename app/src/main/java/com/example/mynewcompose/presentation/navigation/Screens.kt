@@ -10,6 +10,9 @@ object Login
 object Home
 
 @Serializable
+object Animation
+
+@Serializable
 data class Detail(
     val id: String,
     val darkMode: Boolean,
